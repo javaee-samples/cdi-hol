@@ -1,8 +1,10 @@
-package org.cdi.jpa;
+package org.cdi;
 
 import junit.framework.Assert;
-import org.cdi.decorators.MapDecorator;
 import org.cdi.extensions.HashMapAsBeanExtension;
+import org.cdi.mapexample.AddedToMap;
+import org.cdi.mapexample.MapDecorator;
+import org.cdi.mapexample.MyMapObserver;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -28,7 +30,8 @@ public class HashMapAsBeanTest {
 
         WebArchive ret = ShrinkWrap
                 .create(WebArchive.class, "test.war")
-                .addClasses(Movie.class,
+                .addClasses(AddedToMap.class,
+                        MyMapObserver.class,
                         HashMapAsBeanExtension.class,
                         MapDecorator.class)
                 .addAsServiceProvider(Extension.class, HashMapAsBeanExtension.class)
@@ -52,6 +55,7 @@ public class HashMapAsBeanTest {
         myMap.put("anotherKey","anotherValue");
         
         Assert.assertFalse(myMap.containsKey("key"));
+        Assert.assertTrue(myMap.containsKey("anotherKey"));
         
     }
 

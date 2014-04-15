@@ -187,10 +187,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-	<!--	<dependency>
-			<groupId>org.apache.deltaspike.core</groupId>
-			<artifactId>deltaspike-core-api</artifactId>
-		</dependency>-->
+		<dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>[2.0.0,)</version>
+        </dependency>
 
 
 		<dependency>
@@ -289,12 +290,7 @@
 
 		</profile>
 		<profile>
-			<id>wildfly-embedded-arquillian</id>
-			<!--<properties>
-				<browser>chromium-browser</browser>
-				<serverProfile>standalone-full.xml</serverProfile>
-				<serverRoot>${project.build.directory}/wildfly-${org.wildfly}</serverRoot>
-			</properties>-->
+			<id>wildfly-test</id>
 			<dependencies>
 				<dependency>
 					<groupId>io.undertow</groupId>
